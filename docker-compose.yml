@@ -1,0 +1,25 @@
+version: '3'
+services:
+  auth-service:
+    build:
+      context: ./auth-service
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_APP=Login.py
+      - FLASK_ENV=development
+      - FLASK_RUN_HOST=0.0.0.0
+    volumes:
+      - ./auth-service:/app
+
+  profile-service:
+    build:
+      context: ./profile-service
+    ports:
+      - "5001:5000"
+    environment:
+      - FLASK_APP=profile.py
+      - FLASK_ENV=development
+      - FLASK_RUN_HOST=0.0.0.0
+    volumes:
+      - ./profile-service:/app
